@@ -1,0 +1,13 @@
+﻿  Building 'KernelDriver - Hooking Com' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\KernelDriver-HookingCom.inf
+  Stamping [Version] section with DriverVer=11/17/2023,14.53.10.445
+  Hook.cpp
+C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com\KernelDriver - Hooking Com\Global.h(32,4): warning C4201: nonstandard extension used: nameless struct/union
+  (compiling source file 'Hook.cpp')
+  
+C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com\KernelDriver - Hooking Com\Hook.cpp(104,14): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'ULONG', possible loss of data
+  KernelDriver - Hooking Com.vcxproj -> C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com\x64\Release\KernelDriver-HookingCom.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com\x64\Release\KernelDriver-HookingCom.sys
+  
+  Driver is 'Universal'.

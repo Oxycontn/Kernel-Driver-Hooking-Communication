@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com Controller\KernelDriver - Hooking Com Controller\Main.cpp(17,10): warning C4477: 'printf' : format string '%p' requires an argument of type 'void *', but variadic argument 1 has type 'uintptr_t'
+C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com Controller\KernelDriver - Hooking Com Controller\Main.cpp(24,10): warning C4477: 'printf' : format string '%p' requires an argument of type 'void *', but variadic argument 1 has type 'uintptr_t'
+  KernelDriver - Hooking Com Controller.vcxproj -> C:\Users\C\Desktop\Projects\KernelDriver - Hooking Com Controller\x64\Release\KernelDriver - Hooking Com Controller.exe

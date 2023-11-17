@@ -1,0 +1,77 @@
+;
+; KernelDriver-HookingCom.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=KernelDriver-HookingCom.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+KernelDriver-HookingCom_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+KernelDriver-HookingCom.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%KernelDriver-HookingCom.DeviceDesc%=KernelDriver-HookingCom_Device, Root\KernelDriver-HookingCom ; TODO: edit hw-id
+
+[KernelDriver-HookingCom_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+KernelDriver-HookingCom.sys
+
+;-------------- Service installation
+[KernelDriver-HookingCom_Device.NT.Services]
+AddService = KernelDriver-HookingCom,%SPSVCINST_ASSOCSERVICE%, KernelDriver-HookingCom_Service_Inst
+
+; -------------- KernelDriver-HookingCom driver install sections
+[KernelDriver-HookingCom_Service_Inst]
+DisplayName    = %KernelDriver-HookingCom.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\KernelDriver-HookingCom.sys
+
+;
+;--- KernelDriver-HookingCom_Device Coinstaller installation ------
+;
+
+[KernelDriver-HookingCom_Device.NT.CoInstallers]
+AddReg=KernelDriver-HookingCom_Device_CoInstaller_AddReg
+CopyFiles=KernelDriver-HookingCom_Device_CoInstaller_CopyFiles
+
+[KernelDriver-HookingCom_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[KernelDriver-HookingCom_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[KernelDriver-HookingCom_Device.NT.Wdf]
+KmdfService =  KernelDriver-HookingCom, KernelDriver-HookingCom_wdfsect
+[KernelDriver-HookingCom_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "KernelDriver-HookingCom Installation Disk"
+KernelDriver-HookingCom.DeviceDesc = "KernelDriver-HookingCom Device"
+KernelDriver-HookingCom.SVCDESC = "KernelDriver-HookingCom Service"
